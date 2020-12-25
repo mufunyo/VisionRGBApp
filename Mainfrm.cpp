@@ -16,7 +16,7 @@ CMainFrame::CMainFrame()
 
     // Set the registry key name, and load the initial window position
     // Use a registry key name like "CompanyName\\Application"
-    LoadRegistrySettings(_T("Win32++\\DirectX"));
+    LoadRegistrySettings(_T("R3.fyi\\VisionRGBApp"));
 }
 
 CMainFrame::~CMainFrame()
@@ -70,6 +70,17 @@ void CMainFrame::OnInitialUpdate()
 {
     // The frame is now created.
     // Place any additional startup code here.
+    ReBarTheme rt = { TRUE, RGB(240, 240, 240), RGB(252, 252, 252), NULL, NULL, TRUE, FALSE, FALSE, TRUE, TRUE, FALSE };
+    SetReBarTheme(rt);
+
+    StatusBarTheme sbt = { TRUE, RGB(240, 240 ,240), RGB(240, 240, 240) };
+    SetStatusBarTheme(sbt);
+
+    ToolBarTheme tbt = { TRUE, RGB(229,243,255), RGB(229,243,255), RGB(179,215,243), RGB(179,215,243), RGB(102, 176, 235) };
+    SetToolBarTheme(tbt);
+
+    MenuTheme mt = { TRUE, RGB(229,243,255), RGB(229,243,255), RGB(179,215,243), RGB(179,215,243), RGB(102, 176, 235) };
+    SetMenuTheme(mt);
 
     TRACE("Frame created\n");
 }
