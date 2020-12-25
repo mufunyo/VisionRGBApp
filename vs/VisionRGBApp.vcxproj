@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\VRGBApp.cpp" />
+    <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="..\Mainfrm.cpp" />
+    <ClCompile Include="..\StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\View.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Win32xx\include\default_resource.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_appcore.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_appcore0.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_archive.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_commondlg.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_controls.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_cstring.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_ddx.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_dialog.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_dockframe.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_docking.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_exception.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_file.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_filefind.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_folderdialog.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_frame.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_gdi.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_imagelist.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_listview.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_mdi.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_menu.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_menubar.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_metafile.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_mutex.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_preview.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_printdialogs.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_propertysheet.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_rebar.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_rect.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_regkey.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_ribbon.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_richedit.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_scrollview.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_shared_ptr.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_socket.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_statusbar.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_stdcontrols.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_tab.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_taskdialog.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_textconv.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_themes.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_time.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_toolbar.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_treeview.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_webbrowser.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_wincore.h" />
+    <ClInclude Include="..\Win32xx\include\wxx_wincore0.h" />
+    <ClInclude Include="..\VRGBApp.hpp" />
+    <ClInclude Include="..\Mainfrm.hpp" />
+    <ClInclude Include="..\resource.h" />
+    <ClInclude Include="..\stdafx.h" />
+    <ClInclude Include="..\targetver.h" />
+    <ClInclude Include="..\View.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\Resource.rc" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{19CEEA56-2973-4E6A-818E-17DB81197AB5}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>DirectX9</RootNamespace>
+    <ProjectName>VisionRGBApp</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <EmbedManifest>false</EmbedManifest>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <EmbedManifest>false</EmbedManifest>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Win32xx\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateManifest>false</GenerateManifest>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;comctl32.lib;d3d9.lib;d3dx9.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>..\Win32xx\include</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Win32xx\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateManifest>false</GenerateManifest>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;comctl32.lib;d3d9.lib;d3dx9.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>..\Win32xx\include</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

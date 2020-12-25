@@ -1,0 +1,262 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// RT_MANIFEST
+//
+
+1                       RT_MANIFEST             "../src/res/Win32++.manifest"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDW_MAIN MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "New Files Tab",               IDM_NEW_FILES
+        MENUITEM "New Classes Tab",             IDM_NEW_CLASSES
+        MENUITEM "New Dialog Tab",              IDM_NEW_DIALOG
+        MENUITEM "Close Tab",                   IDM_CLOSE_TAB
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       IDM_FILE_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "Undo\tCtrl+Z",                IDM_EDIT_UNDO, GRAYED
+        MENUITEM "Redo\tShift+Ctrl+Z",          IDM_EDIT_REDO, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "Cut\tCtrl+X",                 IDM_EDIT_CUT, GRAYED
+        MENUITEM "Copy\tCtrl+C",                IDM_EDIT_COPY, GRAYED
+        MENUITEM "Paste\tCtrl+V",               IDM_EDIT_PASTE, GRAYED
+        MENUITEM "Delete\tDel",                 IDM_EDIT_DELETE, GRAYED
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Tool Bar",                   IDW_VIEW_TOOLBAR, CHECKED
+        MENUITEM "&Status Bar",                 IDW_VIEW_STATUSBAR, CHECKED
+    END
+    POPUP "&Options"
+    BEGIN
+        MENUITEM "Owner Draw",                  IDM_TAB_DRAW, CHECKED
+        MENUITEM "Fixed Tab Width",             IDM_TAB_FIXED, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "Tabs at Top",                 IDM_TAB_TOP, CHECKED
+        MENUITEM "Show Buttons",                IDM_TAB_BUTTONS, CHECKED
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About",                      IDM_HELP_ABOUT
+    END
+END
+
+IDM_NEWMENU MENU 
+BEGIN
+    POPUP "New"
+    BEGIN
+        MENUITEM "New Files Tab",               IDM_NEW_FILES
+        MENUITEM "New Classes Tab",             IDM_NEW_CLASSES
+        MENUITEM "New Dialog Tab",              IDM_NEW_DIALOG
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDW_MAIN                ICON                    "../src/res/Tab.ico"
+IDI_CLASSVIEW           ICON                    "../src/res/classview.ico"
+IDI_FILEVIEW            ICON                    "../src/res/fileview.ico"
+IDI_DIALOGVIEW          ICON                    "../src/res/Dialog.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDW_MAIN                BITMAP                  "../src/res/toolbar.bmp"
+IDB_CLASSVIEW           BITMAP                  "../src/res/classview.bmp"
+IDB_FILEVIEW            BITMAP                  "../src/res/fileview.bmp"
+IDB_STATUS              BITMAP                  "../src/res/Status.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MYDIALOG DIALOGEX 0, 0, 203, 127
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_VISIBLE | WS_CLIPCHILDREN
+EXSTYLE WS_EX_CLIENTEDGE
+FONT 8, "MS Shell Dlg", 0, 0
+BEGIN
+    CONTROL         "Radio1",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON,16,12,38,10
+    CONTROL         "Radio2",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,16,24,38,10
+    CONTROL         "Radio3",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,16,36,38,10
+    PUSHBUTTON      "Button",IDC_BUTTON1,14,56,49,11
+    CONTROL         "Check Box 1",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,125,77,55,10
+    CONTROL         "Check Box 2",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,125,91,55,10
+    CONTROL         "Check Box 3",IDC_CHECK3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,125,105,55,10
+    CONTROL         "",IDC_RICHEDIT1,"RICHEDIT",ES_MULTILINE | ES_AUTOHSCROLL | WS_BORDER | WS_TABSTOP | WS_VSCROLL | WS_HSCROLL,97,12,84,42
+    CONTROL         "",IDC_RICHEDIT2,"RICHEDIT",ES_MULTILINE | ES_AUTOHSCROLL | WS_BORDER | WS_TABSTOP | WS_VSCROLL | WS_HSCROLL,13,76,84,42
+END
+
+IDW_ABOUT DIALOGEX 0, 0, 186, 90
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU
+CAPTION "About"
+FONT 8, "MS Shell Dlg", 400, 0
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,68,49,50,14
+    CTEXT           "Tab Control Demo",IDC_STATIC,60,22,64,11
+    ICON            IDW_MAIN,0,4,4,20,20
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDW_MAIN ACCELERATORS 
+BEGIN
+    "N",            IDM_FILE_NEW,           VIRTKEY, CONTROL, NOINVERT
+    "O",            IDM_FILE_OPEN,          VIRTKEY, CONTROL, NOINVERT
+    "P",            IDM_FILE_PRINT,         VIRTKEY, CONTROL, NOINVERT
+    "S",            IDM_FILE_SAVE,          VIRTKEY, CONTROL, NOINVERT
+    "C",            IDM_EDIT_COPY,          VIRTKEY, CONTROL, NOINVERT
+    "X",            IDM_EDIT_CUT,           VIRTKEY, CONTROL, NOINVERT
+    "V",            IDM_EDIT_PASTE,         VIRTKEY, CONTROL, NOINVERT
+    "Z",            IDM_EDIT_UNDO,          VIRTKEY, CONTROL, NOINVERT
+    "Y",            IDM_EDIT_REDO,          VIRTKEY, SHIFT, CONTROL, NOINVERT
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDW_MAIN                "Tab Demo"
+    IDW_VIEW_TOOLBAR        "Show or hide the tool bar"
+    IDW_VIEW_STATUSBAR      "Show or hide the status bar"
+    IDW_INDICATOR_CAPS      "CAP"
+    IDW_INDICATOR_NUM       "NUM"
+    IDW_INDICATOR_SCRL      "SCRL"
+    IDW_READY               "Ready"
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_FILE_NEW            "Create a New Document"
+    IDM_FILE_OPEN           "Open Existing Document"
+    IDM_FILE_SAVE           "Save the Document"
+    IDM_FILE_SAVEAS         "Save the Document with a new name"
+    IDM_FILE_PRINT          "Print the Document"
+    IDM_FILE_CLOSE          "Close the Active Document"
+    IDM_FILE_EXIT           "End the Program"
+    IDM_EDIT_UNDO           "Undo the last action"
+    IDM_EDIT_REDO           "Redo the previously undone action"
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_EDIT_CUT            "Cut the Selected Contents to the Clipboard"
+    IDM_EDIT_COPY           "Copy the Selected Contents to the Clipboard"
+    IDM_EDIT_PASTE          "Paste the Clipboard Contents to the Document"
+    IDM_EDIT_DELETE         "Erase the selected Contents"
+    IDM_NEW_TAB             "Add a new tab"
+    IDM_CLOSE_TAB           "Close the tab"
+    IDM_TAB_DRAW            "Enable Owner Draw"
+    IDM_TAB_FIXED           "Use fixed width tabs"
+    IDM_TAB_TOP             "Place tabs at the top of the control"
+    IDM_TAB_BUTTONS         "Show the list and close buttons"
+    IDM_HELP_ABOUT          "Display Information about this program"
+    IDM_NEW_FILES           "Add a new Files tab"
+    IDM_NEW_CLASSES         "Add a new Classes tab"
+END
+
+STRINGTABLE 
+BEGIN
+    IDW_FIRSTCHILD          "Activate this window"
+    IDW_CHILD2              "Activate this window"
+    IDW_CHILD3              "Activate this window"
+    IDW_CHILD4              "Activate this window"
+    IDW_CHILD5              "Activate this window"
+    IDW_CHILD6              "Activate this window"
+    IDW_CHILD7              "Activate this window"
+    IDW_CHILD8              "Activate this window"
+    IDW_CHILD9              "Activate this window"
+    IDW_CHILD10             "Select a window"
+END
+
+STRINGTABLE 
+BEGIN
+    SC_CLOSE                "Close the Window"
+    SC_MAXIMIZE             "Maximize the Window"
+    SC_MINIMIZE             "Minimize the WIndow"
+    SC_MOVE                 "Move the Window"
+    SC_NEXTWINDOW           "Select Next Window"
+    SC_PREVWINDOW           "Select Previous Window"
+    SC_RESTORE              "Restore the Window"
+    SC_SIZE                 "Resize the Window"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
