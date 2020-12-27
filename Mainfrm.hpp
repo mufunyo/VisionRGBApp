@@ -16,21 +16,36 @@ public:
 
     CDXView& GetDXView() const { return const_cast<CDXView&>(m_dxView); }
 
-    BOOL OnFileExit();
-    BOOL OnFileOpen();
-    BOOL OnFilePrint();
-    BOOL OnFileSave();
+    BOOL    OnFileExit();
+    BOOL    OnFileOpen();
+    BOOL    OnFilePrint();
+    BOOL    OnFileSave();
+    BOOL    OnTBBigIcons();
+    BOOL    OnTBCustomize();
+    BOOL    OnTBDefault();
+    void    SaveTBDefault();
 
 protected:
+    virtual LRESULT OnBeginAdjust(LPNMTOOLBAR pNMTB);
     virtual BOOL OnCommand(WPARAM wparam, LPARAM lparam);
-    virtual int  OnCreate(CREATESTRUCT& cs);
+    virtual int OnCreate(CREATESTRUCT& cs);
+    virtual LRESULT OnCustHelp(LPNMHDR pNMHDR);
+    virtual LRESULT OnEndAdjust(LPNMHDR pNMHDR);
+    virtual LRESULT OnGetButtonInfo(LPNMTOOLBAR pNMTB);
     virtual void OnInitialUpdate();
     virtual LRESULT OnNotify(WPARAM wparam, LPARAM lparam);
+    virtual LRESULT OnQueryDelete(LPNMTOOLBAR pNMTB);
+    virtual LRESULT OnQueryInsert(LPNMTOOLBAR pNMTB);
+    virtual LRESULT OnReset(LPNMTOOLBAR pNMTB);
+    virtual LRESULT OnToolBarChange(LPNMTOOLBAR pNMTB);
     virtual void SetupToolBar();
     virtual LRESULT WndProc(UINT msg, WPARAM wparam, LPARAM lparam);
 
 private:
     CDXView m_dxView;
+    std::vector<TBBUTTON>   m_defaultButtons;
+    std::vector<TBBUTTON>   m_resetButtons;
+    BOOL    m_useBigIcons;
 };
 
 #endif //MAINFRM_H

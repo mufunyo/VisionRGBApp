@@ -4,7 +4,7 @@
 //
 
 // include the Resource IDs defined by Win32++
-#include "default_resource.h"
+#include "Win32xx/include/default_resource.h"
 
 #define IDM_FILE_NEW                    121
 #define IDM_FILE_OPEN                   122
@@ -19,7 +19,15 @@
 #define IDM_EDIT_COPY                   133
 #define IDM_EDIT_PASTE                  134
 #define IDM_EDIT_DELETE                 135
+#define IDM_TOOLBAR_DEFAULT             136
+#define IDM_TOOLBAR_BIGICONS            137
+#define IDM_TOOLBAR_CUSTOMIZE           138
 #define IDM_HELP_ABOUT                  140
+#define IDM_TOP                         141
+#define IDM_LEFT                        142
+#define IDM_RIGHT                       143
+#define IDM_BOTTOM                      144
+#define IDW_MAINBIG                     150
 
 // Next default values for new objects
 // 
