@@ -398,6 +398,37 @@ void CMainFrame::SetupToolBar()
 
     AddToolBarButton(0);              // Separator
     AddToolBarButton(IDM_HELP_ABOUT);
+
+    AddInputList();
+}
+
+void CMainFrame::AddInputList()
+{
+    // We'll be placing the ComboBox control over the 'File Save' toolbar button
+    int comboWidth = 120;
+    CToolBar& tb = GetToolBar();
+    if (tb.CommandToIndex(IDM_FILE_SAVE) < 0) return;
+
+    tb.SetButtonStyle(IDM_FILE_SAVE, TBSTYLE_SEP);  // Convert the button to a separator
+    tb.SetButtonWidth(IDM_FILE_SAVE, comboWidth);
+
+    // Determine the size and position of the ComboBox
+    int index = tb.CommandToIndex(IDM_FILE_SAVE);
+    CRect rc = tb.GetItemRect(index);
+
+    // Create and position the ComboBox window
+    m_inputList.CreateEx(NULL, WC_COMBOBOX, TEXT(""), WS_VISIBLE | WS_CHILD | CBS_DROPDOWN | WS_CLIPCHILDREN | CBS_DROPDOWNLIST, rc, tb, NULL);
+    //m_inputList.SetWindowPos(NULL, rc, SWP_NOACTIVATE);
+
+    // Set ComboBox Height
+    m_inputList.SendMessage(CB_SETITEMHEIGHT, (WPARAM)-1, (LPARAM)rc.Height()-6);
+
+    // Add items
+    m_inputList.AddString(TEXT("Input 1"));
+    m_inputList.AddString(TEXT("Input 2"));
+    m_inputList.SetCurSel(0);
+    
+    RecalcLayout();
 }
 
 LRESULT CMainFrame::WndProc(UINT msg, WPARAM wparam, LPARAM lparam)

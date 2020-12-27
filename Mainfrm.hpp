@@ -24,6 +24,7 @@ public:
     BOOL    OnTBCustomize();
     BOOL    OnTBDefault();
     void    SaveTBDefault();
+    void    AddInputList();
 
 protected:
     virtual LRESULT OnBeginAdjust(LPNMTOOLBAR pNMTB);
@@ -46,6 +47,7 @@ private:
     std::vector<TBBUTTON>   m_defaultButtons;
     std::vector<TBBUTTON>   m_resetButtons;
     BOOL    m_useBigIcons;
+    CComboBox m_inputList;
 };
 
 #endif //MAINFRM_H
