@@ -50,5 +50,6 @@ private:
     CComboBox m_inputList;
 };
 
-#endif //MAINFRM_H
+HFONT GetWindowsDefaultFont();
 
+#endif //MAINFRM_H

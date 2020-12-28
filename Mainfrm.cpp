@@ -427,6 +427,7 @@ void CMainFrame::AddInputList()
     m_inputList.AddString(TEXT("Input 1"));
     m_inputList.AddString(TEXT("Input 2"));
     m_inputList.SetCurSel(0);
+    m_inputList.SetFont(GetWindowsDefaultFont());
     
     RecalcLayout();
 }
