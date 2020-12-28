@@ -19,6 +19,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\View.cpp" />
+    <ClCompile Include="..\WinUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Win32xx\include\default_resource.h" />
