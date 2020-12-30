@@ -25,11 +25,13 @@ public:
     BOOL    OnTBDefault();
     void    SaveTBDefault();
     void    AddInputList();
+    void    SetupStatusBar();
 
 protected:
     virtual LRESULT OnBeginAdjust(LPNMTOOLBAR pNMTB);
     virtual BOOL OnCommand(WPARAM wparam, LPARAM lparam);
     virtual int OnCreate(CREATESTRUCT& cs);
+    virtual LRESULT OnDrawItem(UINT msg, WPARAM wparam, LPARAM lparam);
     virtual LRESULT OnCustHelp(LPNMHDR pNMHDR);
     virtual LRESULT OnEndAdjust(LPNMHDR pNMHDR);
     virtual LRESULT OnGetButtonInfo(LPNMTOOLBAR pNMTB);

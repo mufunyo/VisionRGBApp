@@ -5,6 +5,7 @@
 #include "Mainfrm.hpp"
 #include "resource.h"
 
+#define STATUS_ID 1211
 
 // Definitions for the CMainFrame class
 CMainFrame::CMainFrame() : m_useBigIcons(FALSE)
@@ -96,7 +97,34 @@ int CMainFrame::OnCreate(CREATESTRUCT& cs)
     // Untick the Large Icons menu item
     GetFrameMenu().CheckMenuItem(IDM_TOOLBAR_BIGICONS, MF_BYCOMMAND | MF_UNCHECKED);
 
+    GetStatusBar().SetWindowLongPtr(GWLP_ID, STATUS_ID);
+
     return 0;
+}
+
+LRESULT CMainFrame::OnDrawItem(UINT msg, WPARAM wparam, LPARAM lparam)
+{
+    UNREFERENCED_PARAMETER(msg);
+
+    // Perform the owner draw for Part 3 in the status bar
+    LPDRAWITEMSTRUCT pDrawItem = (LPDRAWITEMSTRUCT)lparam;
+
+    if (pDrawItem->CtlID == STATUS_ID) // Message comes from the status bar
+    {
+        CRect partRect = pDrawItem->rcItem;
+        CDC dc;
+        dc.Attach(pDrawItem->hDC);
+
+        // Display the background and text
+        dc.SolidFill(RGB(0, 255, 0), partRect);
+        dc.SetBkMode(TRANSPARENT);
+        dc.TextOut(partRect.left+2, partRect.top+2, _T("60 fps"), 6);
+
+        return TRUE;
+    }
+
+    // Allow the frame to perform owner drawing menu items.
+    return CFrame::OnDrawItem(msg, wparam, lparam);
 }
 
 LRESULT CMainFrame::OnCustHelp(LPNMHDR pNMHDR)
@@ -131,6 +159,8 @@ void CMainFrame::OnInitialUpdate()
 
     MenuTheme mt = { TRUE, RGB(229,243,255), RGB(229,243,255), RGB(179,215,243), RGB(179,215,243), RGB(102, 176, 235) };
     SetMenuTheme(mt);
+
+    SetupStatusBar();
 
     TRACE("Frame created\n");
 
@@ -400,6 +430,20 @@ void CMainFrame::SetupToolBar()
     AddToolBarButton(IDM_HELP_ABOUT);
 
     AddInputList();
+}
+
+void CMainFrame::SetupStatusBar()
+{
+    CStatusBar &sb = GetStatusBar();
+
+    CRect clientRect = GetClientRect();
+    int width = MAX(270, clientRect.right);
+    sb.SetPartWidth(0, width - 170);
+    sb.SetPartWidth(1, 120);
+    sb.SetPartWidth(2, 50);
+
+    sb.SetPartText(1, TEXT("640 x 480 60.000Hz"));
+    sb.SetPartText(2, _T(""), SBT_OWNERDRAW);
 }
 
 void CMainFrame::AddInputList()
