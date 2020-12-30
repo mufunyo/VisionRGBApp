@@ -28,6 +28,8 @@
 #define IDM_RIGHT                       143
 #define IDM_BOTTOM                      144
 #define IDW_MAINBIG                     150
+#define IDC_INPUTBAR                    157
+#define IDM_INPUT                       158
 
 // Next default values for new objects
 // 

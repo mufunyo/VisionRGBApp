@@ -47,6 +47,7 @@ private:
     std::vector<TBBUTTON>   m_defaultButtons;
     std::vector<TBBUTTON>   m_resetButtons;
     BOOL    m_useBigIcons;
+    CToolBar m_inputBar;
     CComboBox m_inputList;
 };
 

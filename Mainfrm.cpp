@@ -404,21 +404,20 @@ void CMainFrame::SetupToolBar()
 
 void CMainFrame::AddInputList()
 {
-    // We'll be placing the ComboBox control over the 'File Save' toolbar button
     int comboWidth = 120;
-    CToolBar& tb = GetToolBar();
-    if (tb.CommandToIndex(IDM_FILE_SAVE) < 0) return;
+ 
+    AddToolBarBand(m_inputBar, 0, IDC_INPUTBAR);
+    m_inputBar.AddButton(IDM_INPUT);
 
-    tb.SetButtonStyle(IDM_FILE_SAVE, TBSTYLE_SEP);  // Convert the button to a separator
-    tb.SetButtonWidth(IDM_FILE_SAVE, comboWidth);
+    m_inputBar.SetButtonStyle(IDM_INPUT, TBSTYLE_SEP);  // Convert the button to a separator
+    m_inputBar.SetButtonWidth(IDM_INPUT, comboWidth);
 
     // Determine the size and position of the ComboBox
-    int index = tb.CommandToIndex(IDM_FILE_SAVE);
-    CRect rc = tb.GetItemRect(index);
+    int index = m_inputBar.CommandToIndex(IDM_INPUT);
+    CRect rc = m_inputBar.GetItemRect(index);
 
     // Create and position the ComboBox window
-    m_inputList.CreateEx(NULL, WC_COMBOBOX, TEXT(""), WS_VISIBLE | WS_CHILD | CBS_DROPDOWN | WS_CLIPCHILDREN | CBS_DROPDOWNLIST, rc, tb, NULL);
-    //m_inputList.SetWindowPos(NULL, rc, SWP_NOACTIVATE);
+    m_inputList.CreateEx(NULL, WC_COMBOBOX, TEXT(""), WS_VISIBLE | WS_CHILD | CBS_DROPDOWNLIST | WS_CLIPCHILDREN, rc, m_inputBar, NULL);
 
     // Set ComboBox Height
     m_inputList.SendMessage(CB_SETITEMHEIGHT, (WPARAM)-1, (LPARAM)rc.Height()-6);
@@ -430,6 +429,8 @@ void CMainFrame::AddInputList()
     m_inputList.SetFont(GetWindowsDefaultFont());
     
     RecalcLayout();
+    GetReBar().SendMessage(RB_SHOWBAND, GetReBar().GetBand(m_inputBar), TRUE);
+    GetReBar().MoveBandsLeft();
 }
 
 LRESULT CMainFrame::WndProc(UINT msg, WPARAM wparam, LPARAM lparam)
