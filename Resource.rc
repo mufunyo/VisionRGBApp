@@ -57,14 +57,14 @@ BEGIN
     END
     POPUP "&View"
     BEGIN
-        MENUITEM "&Tool Bar",                   IDW_VIEW_TOOLBAR, CHECKED
+        POPUP "&Tool Bar"
+        BEGIN
+            MENUITEM "&Show Tool Bar",          IDW_VIEW_TOOLBAR, CHECKED
+            MENUITEM "&Default Tool Bar",       IDM_TOOLBAR_DEFAULT
+            MENUITEM "&Large Icons",            IDM_TOOLBAR_BIGICONS, CHECKED
+            MENUITEM "&Customize",              IDM_TOOLBAR_CUSTOMIZE
+        END
         MENUITEM "&Status Bar",                 IDW_VIEW_STATUSBAR, CHECKED
-    END
-    POPUP "&ToolBar"
-    BEGIN
-        MENUITEM "&Default ToolBar",            IDM_TOOLBAR_DEFAULT
-        MENUITEM "&Large Icons",                IDM_TOOLBAR_BIGICONS, CHECKED
-        MENUITEM "&Customize",                  IDM_TOOLBAR_CUSTOMIZE
     END
     POPUP "&Help"
     BEGIN
