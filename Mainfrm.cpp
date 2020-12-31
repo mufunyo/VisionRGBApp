@@ -8,7 +8,7 @@
 #define STATUS_ID 1211
 
 // Definitions for the CMainFrame class
-CMainFrame::CMainFrame() : m_useBigIcons(FALSE)
+CMainFrame::CMainFrame() : m_settingsDialog(IDD_DIALOG1), m_useBigIcons(FALSE)
 {
     // Constructor for CMainFrame. Its called after CFrame's constructor
 
@@ -59,6 +59,7 @@ BOOL CMainFrame::OnCommand(WPARAM wparam, LPARAM lparam)
     case IDM_FILE_SAVE:         return OnFileSave();
     case IDM_FILE_SAVEAS:       return OnFileSave();
     case IDM_FILE_PRINT:        return OnFilePrint();
+    case IDM_FILE_SETTINGS:     return OnSettings();
     case IDM_FILE_EXIT:         return OnFileExit();
     case IDW_VIEW_STATUSBAR:    return OnViewStatusBar();
     case IDW_VIEW_TOOLBAR:      return OnViewToolBar();
@@ -222,6 +223,15 @@ BOOL CMainFrame::OnFilePrint()
     return TRUE;
 }
 
+BOOL CMainFrame::OnSettings()
+{
+    //Display the Modeless Dialog
+    // A modeless dialog gives us an opportunity to pretranslatate messages 
+    m_settingsDialog.Create((HWND)*this);    // throws a CWinException on failure  
+
+    return TRUE;
+}
+
 LRESULT CMainFrame::OnNotify(WPARAM wparam, LPARAM lparam)
 // Process notification messages sent by child windows
 {
@@ -257,7 +267,8 @@ LRESULT CMainFrame::OnGetButtonInfo(LPNMTOOLBAR pNMTB)
         { 4, IDM_EDIT_COPY,     0,               0, {0}, 0, 0 },
         { 5, IDM_EDIT_PASTE,    0,               0, {0}, 0, 0 },
         { 6, IDM_FILE_PRINT,    TBSTATE_ENABLED, 0, {0}, 0, 0 },
-        { 7, IDM_HELP_ABOUT,    TBSTATE_ENABLED, 0, {0}, 0, 0 }
+        { 7, IDM_FILE_SETTINGS, TBSTATE_ENABLED, 0, {0}, 0, 0 },
+        { 8, IDM_HELP_ABOUT,    TBSTATE_ENABLED, 0, {0}, 0, 0 }
     };
 
     // An array of Button text strings (LPCTSTRs).
@@ -271,6 +282,7 @@ LRESULT CMainFrame::OnGetButtonInfo(LPNMTOOLBAR pNMTB)
         _T("Copy"),
         _T("Paste"),
         _T("Print"),
+        _T("Settings"),
         _T("Help About")
     };
 
@@ -425,6 +437,9 @@ void CMainFrame::SetupToolBar()
 
     AddToolBarButton(0);              // Separator
     AddToolBarButton(IDM_FILE_PRINT);
+    
+    AddToolBarButton(0);              // Separator
+    AddToolBarButton(IDM_FILE_SETTINGS);
 
     AddToolBarButton(0);              // Separator
     AddToolBarButton(IDM_HELP_ABOUT);

@@ -19,6 +19,7 @@
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -26,6 +27,59 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 //
 
 1                       RT_MANIFEST             "res/Win32++.manifest"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG1 DIALOGEX 0, 0, 235, 110
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Settings"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_TAB1,"SysTabControl32",0x0,2,1,232,108
+END
+
+IDD_BUTTONS DIALOGEX 0, 0, 230, 94
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Pushbuttons",IDC_STATIC,10,5,60,76
+    PUSHBUTTON      "Pushbutton",IDC_BUTTON1,15,20,49,14
+    GROUPBOX        "Radio Buttons",IDC_STATIC,84,5,60,76
+    CONTROL         "Radio1",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,89,20,50,10
+    CONTROL         "Radio2",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,89,39,50,10
+    CONTROL         "Radio3",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,89,57,50,10
+    GROUPBOX        "Check Boxes",IDC_STATIC,157,5,60,77
+    CONTROL         "Check1",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,162,20,50,10
+    CONTROL         "Check2",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,162,39,50,10
+    CONTROL         "Check3",IDC_CHECK3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,162,57,50,10
+END
+
+IDD_COMBOBOXES DIALOGEX 0, 0, 230, 94
+STYLE DS_SETFONT | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_COMBO1,10,15,60,70,CBS_SIMPLE | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Simple",IDC_STATIC,5,0,70,90
+    COMBOBOX        IDC_COMBO2,85,15,60,75,CBS_DROPDOWN | CBS_SORT | CBS_DISABLENOSCROLL | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Drop Down",IDC_STATIC,80,0,70,90
+    COMBOBOX        IDC_COMBO3,160,15,60,75,CBS_DROPDOWNLIST | CBS_SORT | CBS_DISABLENOSCROLL | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Drop List",IDC_STATIC,155,0,70,90
+END
+
+IDW_ABOUT DIALOGEX 0, 0, 186, 90
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "About"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,68,49,50,14
+    CTEXT           "Frame Application",IDC_STATIC,60,22,64,11
+    ICON            IDW_MAIN,0,4,4,20,20
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -43,6 +97,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Print",                      IDM_FILE_PRINT
         MENUITEM SEPARATOR
+        MENUITEM "Se&ttings",                   IDM_FILE_SETTINGS
         MENUITEM "E&xit",                       IDM_FILE_EXIT
     END
     POPUP "&Edit"
@@ -59,10 +114,10 @@ BEGIN
     BEGIN
         POPUP "&Tool Bar"
         BEGIN
-            MENUITEM "&Show Tool Bar",          IDW_VIEW_TOOLBAR, CHECKED
-            MENUITEM "&Default Tool Bar",       IDM_TOOLBAR_DEFAULT
-            MENUITEM "&Large Icons",            IDM_TOOLBAR_BIGICONS, CHECKED
-            MENUITEM "&Customize",              IDM_TOOLBAR_CUSTOMIZE
+            MENUITEM "&Show Tool Bar",              IDW_VIEW_TOOLBAR, CHECKED
+            MENUITEM "&Default Tool Bar",           IDM_TOOLBAR_DEFAULT
+            MENUITEM "&Large Icons",                IDM_TOOLBAR_BIGICONS, CHECKED
+            MENUITEM "&Customize",                  IDM_TOOLBAR_CUSTOMIZE
         END
         MENUITEM "&Status Bar",                 IDW_VIEW_STATUSBAR, CHECKED
     END
@@ -81,6 +136,8 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDW_MAIN                ICON                    "res/VisionRGBApp.ico"
+IDI_SETTINGS            ICON                    "res/settings.ico"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -88,22 +145,8 @@ IDW_MAIN                ICON                    "res/VisionRGBApp.ico"
 //
 
 IDW_MAIN                BITMAP                  "res/toolbar.bmp"
+
 IDW_MAINBIG             BITMAP                  "res/toolbar24.bmp"
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Dialog
-//
-
-IDW_ABOUT DIALOGEX 0, 0, 186, 90
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
-CAPTION "About"
-FONT 8, "MS Shell Dlg", 400, 0
-BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,68,49,50,14
-    CTEXT           "Frame Application",IDC_STATIC,60,22,64,11
-    ICON            IDW_MAIN,0,4,4,20,20
-END
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -165,8 +208,11 @@ BEGIN
     IDW_VIEW_STATUSBAR      "Show or hide the status bar"
     IDW_INDICATOR_CAPS      "CAP"
     IDW_INDICATOR_NUM       "NUM"
+END
+
+STRINGTABLE
+BEGIN
     IDW_INDICATOR_SCRL      "SCRL"
-    IDW_READY               "" 
 END
 
 STRINGTABLE
@@ -177,36 +223,73 @@ BEGIN
     IDM_FILE_SAVEAS         "Save the Document with a new name"
     IDM_FILE_PRINT          "Print the Document"
     IDM_FILE_EXIT           "End the Program"
+END
+
+STRINGTABLE
+BEGIN
+    IDM_FILE_SETTINGS       "Adjust the Settings"
     IDM_EDIT_UNDO           "Undo the last action"
     IDM_EDIT_REDO           "Redo the previously undone action"
+    IDM_EDIT_CUT            "Cut the Selected Contents to the Clipboard"
+    IDM_EDIT_COPY           "Copy the Selected Contents to the Clipboard"
+    IDM_EDIT_PASTE          "Paste the Clipboard Contents to the Document"
+    IDM_EDIT_DELETE         "Erase the selected Contents"
+    IDM_TOOLBAR_DEFAULT     "Return the ToolBar buttons back to Default"
+    IDM_TOOLBAR_BIGICONS    "Toggle Big Icons On or Off"
+    IDM_TOOLBAR_CUSTOMIZE   "Customize the ToolBar"
+    IDM_HELP_ABOUT          "Display Information about this program"
 END
 
 STRINGTABLE
 BEGIN
-IDM_EDIT_CUT            "Cut the Selected Contents to the Clipboard"
-IDM_EDIT_COPY           "Copy the Selected Contents to the Clipboard"
-IDM_EDIT_PASTE          "Paste the Clipboard Contents to the Document"
-IDM_EDIT_DELETE         "Erase the selected Contents"
-IDM_TOOLBAR_CUSTOMIZE   "Customize the ToolBar"
-IDM_TOOLBAR_DEFAULT     "Return the ToolBar buttons back to Default"
-IDM_TOOLBAR_BIGICONS    "Toggle Big Icons On or Off"
-IDM_HELP_ABOUT          "Display Information about this program"
+    61536                   "Close the Window"
 END
 
 STRINGTABLE
 BEGIN
-    SC_CLOSE                "Close the Window"
-    SC_MAXIMIZE             "Maximize the Window"
-    SC_MINIMIZE             "Minimize the WIndow"
-    SC_MOVE                 "Move the Window"
-    SC_NEXTWINDOW           "Select Next Window"
-    SC_PREVWINDOW           "Select Previous Window"
-    SC_RESTORE              "Restore the Window"
-    SC_SIZE                 "Resize the Window"
+    61488                   "Maximize the Window"
 END
 
-#endif    // English (U.S.) resources
+STRINGTABLE
+BEGIN
+    61472                   "Minimize the WIndow"
+END
+
+STRINGTABLE
+BEGIN
+    61456                   "Move the Window"
+END
+
+STRINGTABLE
+BEGIN
+    61504                   "Select Next Window"
+END
+
+STRINGTABLE
+BEGIN
+    61520                   "Select Previous Window"
+END
+
+STRINGTABLE
+BEGIN
+    61728                   "Restore the Window"
+END
+
+STRINGTABLE
+BEGIN
+    61440                   "Resize the Window"
+END
+
+#endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
 
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
 

@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\SettingsDialog.cpp" />
     <ClCompile Include="..\VRGBApp.cpp" />
     <ClCompile Include="..\main.cpp" />
     <ClCompile Include="..\Mainfrm.cpp" />
@@ -22,6 +23,7 @@
     <ClCompile Include="..\WinUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\SettingsDialog.hpp" />
     <ClInclude Include="..\Win32xx\include\default_resource.h" />
     <ClInclude Include="..\Win32xx\include\wxx_appcore.h" />
     <ClInclude Include="..\Win32xx\include\wxx_appcore0.h" />
@@ -78,6 +80,17 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\res\icon1.ico" />
+    <Image Include="..\res\settings.ico" />
+    <Image Include="..\res\toolbar.bmp" />
+    <Image Include="..\res\toolbar24.bmp" />
+    <Image Include="..\res\VisionRGBApp.ico" />
+    <Image Include="res\settings.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="..\res\Win32++.manifest" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{19CEEA56-2973-4E6A-818E-17DB81197AB5}</ProjectGuid>

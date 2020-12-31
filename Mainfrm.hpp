@@ -5,6 +5,7 @@
 #define MAINFRM_H
 
 #include "View.hpp"
+#include "SettingsDialog.hpp"
 
 
 // Declaration of the CMainFrame class
@@ -20,6 +21,7 @@ public:
     BOOL    OnFileOpen();
     BOOL    OnFilePrint();
     BOOL    OnFileSave();
+    BOOL    OnSettings();
     BOOL    OnTBBigIcons();
     BOOL    OnTBCustomize();
     BOOL    OnTBDefault();
@@ -42,6 +44,7 @@ protected:
     virtual LRESULT OnReset(LPNMTOOLBAR pNMTB);
     virtual LRESULT OnToolBarChange(LPNMTOOLBAR pNMTB);
     virtual void SetupToolBar();
+    CSettingsDialog& GetDialog() { return m_settingsDialog; }
     virtual LRESULT WndProc(UINT msg, WPARAM wparam, LPARAM lparam);
 
 private:
@@ -51,6 +54,7 @@ private:
     BOOL    m_useBigIcons;
     CToolBar m_inputBar;
     CComboBox m_inputList;
+    CSettingsDialog m_settingsDialog;
 };
 
 HFONT GetWindowsDefaultFont();
