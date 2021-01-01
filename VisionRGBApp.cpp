@@ -2,7 +2,7 @@
 // DXApp.cpp
 
 #include "stdafx.h"
-#include "VRGBApp.hpp"
+#include "VisionRGBApp.hpp"
 
 
 CVRGBApp::CVRGBApp()

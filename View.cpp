@@ -9,7 +9,7 @@
 
 #include "stdafx.h"
 #include <d3dx9.h>  // see the note above
-#include "VRGBApp.hpp"
+#include "VisionRGBApp.hpp"
 
 
 /////////////////////////////////////////////////
