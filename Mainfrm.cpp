@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "Mainfrm.hpp"
 #include "resource.h"
+#include "Error.hpp"
 
 #define STATUS_ID 1211
 
@@ -450,6 +451,7 @@ void CMainFrame::SetupToolBar()
 void CMainFrame::SetupStatusBar()
 {
     CStatusBar &sb = GetStatusBar();
+    g_statusBar = &sb; // register status bar globally for error logging
 
     CRect clientRect = GetClientRect();
     int width = MAX(270, clientRect.right);

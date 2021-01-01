@@ -27,13 +27,19 @@
     <ClCompile Include="..\View.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\VRGBApp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\WinUtil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\SettingsDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\VisionRGBApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Wrappers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Error.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -194,10 +200,16 @@
     <ClInclude Include="..\View.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\VRGBApp.hpp">
+    <ClInclude Include="..\SettingsDialog.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\SettingsDialog.hpp">
+    <ClInclude Include="..\VisionRGBApp.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Wrappers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Error.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -207,14 +219,22 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\res\icon1.ico" />
-    <Image Include="res\settings.ico" />
-    <Image Include="..\res\VisionRGBApp.ico" />
-    <Image Include="..\res\toolbar.bmp" />
-    <Image Include="..\res\toolbar24.bmp" />
-    <Image Include="..\res\settings.ico" />
+    <Image Include="res\settings.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\res\toolbar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\res\toolbar24.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\res\VisionRGBApp.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
-    <Manifest Include="..\res\Win32++.manifest" />
+    <Manifest Include="..\res\Win32++.manifest">
+      <Filter>Resource Files</Filter>
+    </Manifest>
   </ItemGroup>
 </Project>
