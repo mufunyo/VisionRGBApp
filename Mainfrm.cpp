@@ -228,7 +228,10 @@ BOOL CMainFrame::OnSettings()
 {
     //Display the Modeless Dialog
     // A modeless dialog gives us an opportunity to pretranslatate messages 
-    m_settingsDialog.Create((HWND)*this);    // throws a CWinException on failure  
+    if (!m_settingsDialog)
+        m_settingsDialog.Create((HWND)*this);    // throws a CWinException on failure
+    else
+        m_settingsDialog.BringWindowToTop();
 
     return TRUE;
 }
