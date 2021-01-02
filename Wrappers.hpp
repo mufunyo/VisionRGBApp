@@ -43,3 +43,20 @@ public:
 	void unlock();
 	CRITICAL_SECTION data;
 };
+
+// less boilerplatey version of IDirect3DSurface9
+class D3D9Surface {
+public:
+	D3D9Surface(unsigned int width, unsigned int height, PixelFmt format);
+	D3D9Surface();
+	~D3D9Surface();
+	void map();
+	void unmap();
+	UINT width, height;
+	PixelFmt pixFormat;
+	void* pBuffer;
+	HBITMAP hBitmap;
+	BITMAPINFO bmpInfo;
+	IDirect3DSurface9* pData;
+	IDirect3DTexture9* pParentTexture;
+};
