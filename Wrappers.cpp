@@ -52,7 +52,6 @@ D3D9Surface::~D3D9Surface() {
 
 void D3D9Surface::map()
 {
-	HRESULT hr;
 	D3DLOCKED_RECT lockedRect;
 	hrAssert(pData->LockRect(&lockedRect, NULL, D3DLOCK_DISCARD | D3DLOCK_NOSYSLOCK), ASSERT_NOTICE);
 	pBuffer = lockedRect.pBits;
@@ -61,6 +60,5 @@ void D3D9Surface::map()
 
 void D3D9Surface::unmap()
 {
-	HRESULT hr;
-	hrAssert(hr = pData->UnlockRect(), ASSERT_NOTICE);
+	hrAssert(pData->UnlockRect(), ASSERT_NOTICE);
 }
