@@ -14,7 +14,7 @@ CMainFrame::CMainFrame() : m_settingsDialog(IDD_DIALOG1), m_useBigIcons(FALSE)
     // Constructor for CMainFrame. Its called after CFrame's constructor
 
     //Set m_View as the view window of the frame
-    SetView(m_dxView);
+    SetView(m_view);
 
     // Set the registry key name, and load the initial window position
     // Use a registry key name like "CompanyName\\Application"

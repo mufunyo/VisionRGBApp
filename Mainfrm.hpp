@@ -15,8 +15,6 @@ public:
     CMainFrame();
     virtual ~CMainFrame();
 
-    CDXView& GetDXView() const { return const_cast<CDXView&>(m_dxView); }
-
     BOOL    OnFileExit();
     BOOL    OnFileOpen();
     BOOL    OnFilePrint();
@@ -48,7 +46,7 @@ protected:
     virtual LRESULT WndProc(UINT msg, WPARAM wparam, LPARAM lparam);
 
 private:
-    CDXView m_dxView;
+    CView m_view;
     std::vector<TBBUTTON>   m_defaultButtons;
     std::vector<TBBUTTON>   m_resetButtons;
     BOOL    m_useBigIcons;
