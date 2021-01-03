@@ -11,10 +11,10 @@ int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     try
     {
         // Start Win32++
-        CVRGBApp VisionRGBApp;
+        VisionRGBApp visionRGBApp;
 
         // Run the application
-        return VisionRGBApp.Run();
+        return visionRGBApp.Run();
     }
     
     // catch all unhandled CException types

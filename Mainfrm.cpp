@@ -508,3 +508,7 @@ LRESULT CMainFrame::WndProc(UINT msg, WPARAM wparam, LPARAM lparam)
     return WndProcDefault(msg, wparam, lparam);
 }
 
+HWND CMainFrame::GetView() {
+    return m_view.GetHwnd();
+}
+

@@ -9,23 +9,21 @@
 #define DXAPP_H
 
 #include "MainFrm.hpp"
+#include "Wrappers.hpp"
 
 
-class CVRGBApp : public CWinApp
+class VisionRGBApp : public CWinApp
 {
 public:
-    CVRGBApp();
-    virtual ~CVRGBApp() {}
+    VisionRGBApp();
+    virtual ~VisionRGBApp() {}
     virtual BOOL InitInstance();
+    virtual int MessageLoop();
     CMainFrame& GetMainFrame() { return m_frame; }
 
 private:
     CMainFrame m_frame;
+    D3D9Context m_d3D9;
 };
-
-
-// returns a pointer to the CDXApp object
-inline CVRGBApp* GetDXApp() { return static_cast<CVRGBApp*>(GetApp()); }
-
 
 #endif

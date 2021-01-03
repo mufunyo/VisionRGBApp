@@ -60,3 +60,18 @@ public:
 	IDirect3DSurface9* pData;
 	IDirect3DTexture9* pParentTexture;
 };
+
+class D3D9Context {
+public:
+	D3D9Context();
+	D3D9Context(HWND hWnd);
+	~D3D9Context();
+	D3D9Surface* createSurface(unsigned int width, unsigned int height, PixelFmt format);
+	D3D9Surface* createSurfaceFromFile(LPCTSTR lpFile);
+	bool blit(D3D9Surface* pSrc, D3D9Surface* pDest);
+	void present();
+	HWND hWnd;
+	IDirect3D9Ex* pD3D9;
+	IDirect3DDevice9Ex* pD3D9Device;
+	D3D9Surface backBuf;
+};

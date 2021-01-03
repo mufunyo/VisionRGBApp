@@ -26,6 +26,7 @@ public:
     void    SaveTBDefault();
     void    AddInputList();
     void    SetupStatusBar();
+    HWND    GetView();
 
 protected:
     virtual LRESULT OnBeginAdjust(LPNMTOOLBAR pNMTB);
