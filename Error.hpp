@@ -13,4 +13,4 @@ enum AssertLvl {
 void crash(LPCTSTR fmt, ...);
 void warning(LPCTSTR fmt, ...);
 void notice(LPCTSTR fmt, ...);
-bool hrAssert(HRESULT hr, AssertLvl level);
+bool hrAssert(HRESULT hr, AssertLvl level, LPCTSTR caller = TEXT("hrAssert"));

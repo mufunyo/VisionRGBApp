@@ -13,6 +13,9 @@ void crash(LPCTSTR fmt, ...) {
 	va_start(ap, fmt);
 	StringCchVPrintf(str, 256, fmt, ap);
 	MessageBox(NULL, str, TEXT("Error!"), MB_OK | MB_ICONERROR);
+#ifdef _DEBUG
+	DebugBreak();
+#endif
 	ExitProcess(FALSE);
 }
 
@@ -39,35 +42,26 @@ void notice(LPCTSTR fmt, ...) {
 		g_statusBar->SetPartText(0, str2);
 }
 
-bool hrAssert(HRESULT hr, AssertLvl level) {
+bool hrAssert(HRESULT hr, AssertLvl level, LPCTSTR caller) {
 	if (SUCCEEDED(hr))
 		return false;
 	else {
 		LPTSTR str = nullptr;
 		if (!FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_ALLOCATE_BUFFER, nullptr, hr, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPTSTR)&str, 0, nullptr))
-			warning(TEXT("hrAssert: Unknown error code, result = 0x%08lX"), hr);
+			warning(TEXT("%s: Unknown error code, result = 0x%08lX"), caller, hr);
 		else {
 			switch (level) {
 #ifdef _DEBUG
 			case ASSERT_DEBUG:
 #endif
 			case ASSERT_NOTICE:
-#ifdef _DEBUG
-				OutputDebugString(str);
-#endif
-				if (g_statusBar)
-					g_statusBar->SetPartText(0, str);
+				notice(TEXT("%s: %s"), caller, str);
 				break;
 			case ASSERT_WARNING:
-				MessageBox(NULL, str, TEXT("Warning!"), MB_OK | MB_ICONWARNING);
+				warning(TEXT("%s: %s"), caller, str);
 				break;
 			case ASSERT_CRASH:
-				MessageBox(NULL, str, TEXT("Error!"), MB_OK | MB_ICONERROR);
-#ifdef _DEBUG
-				DebugBreak();
-#else
-				ExitProcess(FALSE);
-#endif
+				crash(TEXT("%s: %s"), caller, str);
 			}
 		}
 		return true;

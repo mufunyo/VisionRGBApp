@@ -18,10 +18,8 @@ void Mutex::unlock() {
 D3D9Context::D3D9Context() {}
 
 D3D9Context::D3D9Context(HWND hWnd) : hWnd(hWnd) {
-	HRESULT hr = E_UNEXPECTED;
 
-	if FAILED(hr = Direct3DCreate9Ex(D3D_SDK_VERSION, &pD3D9))
-		warning(TEXT("D3D9Context: Direct3DCreate9Ex failed, result = 0x%08lX"), hr);
+	hrAssert(Direct3DCreate9Ex(D3D_SDK_VERSION, &pD3D9), ASSERT_WARNING, TEXT("D3D9Context->Direct3DCreate9Ex"));
 
 	D3DPRESENT_PARAMETERS params;
 	ZeroMemory(&params, sizeof(D3DPRESENT_PARAMETERS));
@@ -30,17 +28,15 @@ D3D9Context::D3D9Context(HWND hWnd) : hWnd(hWnd) {
 	params.hDeviceWindow = hWnd;
 	params.Flags = D3DPRESENTFLAG_LOCKABLE_BACKBUFFER;
 
-	if FAILED(hr = pD3D9->CreateDeviceEx(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd, D3DCREATE_HARDWARE_VERTEXPROCESSING | D3DCREATE_MULTITHREADED, &params, NULL, &pD3D9Device))
-		warning(TEXT("D3D9Context: CreateDeviceEx failed, result = 0x%08lX"), hr);
+	hrAssert(pD3D9->CreateDeviceEx(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd, D3DCREATE_HARDWARE_VERTEXPROCESSING | D3DCREATE_MULTITHREADED, &params, nullptr, &pD3D9Device), ASSERT_WARNING, TEXT("D3D9Context->CreateDeviceEx"));
 
 	D3DSURFACE_DESC desc;
-	if FAILED(hr = pD3D9Device->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &backBuf.pData))
-		warning(TEXT("D3D9Context: GetBackBuffer failed, result = 0x%08lX"), hr);
-	if FAILED(hr = backBuf.pData->GetDesc(&desc))
-		warning(TEXT("D3D9Context: GetDesc failed, result = 0x%08lX"), hr);
+	hrAssert(pD3D9Device->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &backBuf.pData), ASSERT_WARNING, TEXT("D3D9Context->GetBackBuffer"));
+	hrAssert(backBuf.pData->GetDesc(&desc), ASSERT_WARNING, TEXT("D3D9Context->GetDesc"));
 	backBuf.width = desc.Width;
 	backBuf.height = desc.Height;
 }
+
 D3D9Context::~D3D9Context() {
 
 }
@@ -50,26 +46,21 @@ D3D9Surface* D3D9Context::createSurface(unsigned int width, unsigned int height,
 	HRESULT hr;
 	D3D9Surface* pSurface = new D3D9Surface(width, height, format);
 
-	if FAILED(hr = pD3D9Device->CreateOffscreenPlainSurface(width, height, pixFmtD3D[format], D3DPOOL_DEFAULT, &pSurface->pData, NULL))
-		warning(TEXT("createSurface: CreateOffscreenPlainSurface failed, result = 0x%08lX"), hr);
+	hrAssert(pD3D9Device->CreateOffscreenPlainSurface(width, height, pixFmtD3D[format], D3DPOOL_DEFAULT, &pSurface->pData, nullptr), ASSERT_WARNING, TEXT("createSurface->CreateOffscreenPlainSurface"));
 
 	return pSurface;
 }
 
 D3D9Surface* D3D9Context::createSurfaceFromFile(LPCTSTR lpFile)
 {
-	HRESULT hr;
 	D3DSURFACE_DESC desc;
 	D3D9Surface* pSurface = new D3D9Surface();
 
-	if FAILED(hr = D3DXCreateTextureFromFileEx(pD3D9Device, lpFile, D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT_NONPOW2, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_POINT, D3DX_FILTER_POINT, 0, NULL, NULL, &pSurface->pParentTexture))
-		warning(TEXT("createSurfaceFromFile: D3DXCreateTextureFromFile failed, result = 0x%08lX"), hr);
+	hrAssert(D3DXCreateTextureFromFileEx(pD3D9Device, lpFile, D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT_NONPOW2, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_POINT, D3DX_FILTER_POINT, 0, nullptr, nullptr, &pSurface->pParentTexture), ASSERT_WARNING, TEXT("createSurfaceFromFile->D3DXCreateTextureFromFile"));
 
-	if FAILED(hr = pSurface->pParentTexture->GetSurfaceLevel(0, &pSurface->pData))
-		warning(TEXT("createSurfaceFromFile: GetSurfaceLevel failed, result = 0x%08lX"), hr);
+	hrAssert(pSurface->pParentTexture->GetSurfaceLevel(0, &pSurface->pData), ASSERT_WARNING, TEXT("createSurfaceFromFile->GetSurfaceLevel"));
 
-	if FAILED(hr = pSurface->pData->GetDesc(&desc))
-		warning(TEXT("createSurfaceFromFile: GetDesc failed, result = 0x%08lX"), hr);
+	hrAssert(pSurface->pData->GetDesc(&desc), ASSERT_WARNING, TEXT("createSurfaceFromFile->GetDesc"));
 	pSurface->width = desc.Width;
 	pSurface->height = desc.Height;
 
@@ -77,16 +68,16 @@ D3D9Surface* D3D9Context::createSurfaceFromFile(LPCTSTR lpFile)
 }
 void D3D9Context::present()
 {
-	pD3D9Device->Present(NULL, NULL, NULL, NULL);
+	pD3D9Device->Present(nullptr, nullptr, nullptr, nullptr);
 }
 
 bool D3D9Context::blit(D3D9Surface* pSrc, D3D9Surface* pDest) {
-	return hrAssert(pD3D9Device->StretchRect(pSrc->pData, nullptr, pDest->pData, nullptr, D3DTEXF_LINEAR), ASSERT_WARNING);
+	return hrAssert(pD3D9Device->StretchRect(pSrc->pData, nullptr, pDest->pData, nullptr, D3DTEXF_LINEAR), ASSERT_WARNING, TEXT("D3D9Context::blit->StretchRect"));
 }
 
 D3D9Surface::D3D9Surface(unsigned int width, unsigned int height, PixelFmt format)
-	: width(width), height(height), pixFormat(pixFormat), pBuffer(NULL), pParentTexture(NULL), pData(NULL) {
-	HDC hDC = GetDC(NULL);
+	: width(width), height(height), pixFormat(pixFormat), pBuffer(nullptr), pParentTexture(nullptr), pData(nullptr) {
+	HDC hDC = GetDC(nullptr);
 
 	bmpInfo.bmiHeader.biWidth = width;
 	bmpInfo.bmiHeader.biHeight = height;
@@ -102,7 +93,7 @@ D3D9Surface::D3D9Surface(unsigned int width, unsigned int height, PixelFmt forma
 	bmpInfo.bmiHeader.biSizeImage = width * height * pixFmtBpp[format] / 8;
 
 	memcpy(&bmpInfo.bmiColors, &pixFmtMask[pixFormat], sizeof(pixFmtMask[format]));
-	hBitmap = CreateDIBSection(hDC, &bmpInfo, DIB_RGB_COLORS, &pBuffer, NULL, 0);
+	hBitmap = CreateDIBSection(hDC, &bmpInfo, DIB_RGB_COLORS, &pBuffer, nullptr, 0);
 }
 
 D3D9Surface::D3D9Surface()
@@ -122,7 +113,7 @@ D3D9Surface::~D3D9Surface() {
 void D3D9Surface::map()
 {
 	D3DLOCKED_RECT lockedRect;
-	hrAssert(pData->LockRect(&lockedRect, NULL, D3DLOCK_DISCARD | D3DLOCK_NOSYSLOCK), ASSERT_NOTICE);
+	hrAssert(pData->LockRect(&lockedRect, nullptr, D3DLOCK_DISCARD | D3DLOCK_NOSYSLOCK), ASSERT_NOTICE);
 	pBuffer = lockedRect.pBits;
 	bmpInfo.bmiHeader.biSizeImage = lockedRect.Pitch * height;
 }
