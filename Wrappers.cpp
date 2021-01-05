@@ -41,8 +41,7 @@ D3D9Context::~D3D9Context() {
 
 }
 
-D3D9Surface* D3D9Context::createSurface(unsigned int width, unsigned int height, PixelFmt format)
-{
+D3D9Surface* D3D9Context::createSurface(unsigned int width, unsigned int height, PixelFmt format) {
 	HRESULT hr;
 	D3D9Surface* pSurface = new D3D9Surface(width, height, format);
 
@@ -51,8 +50,7 @@ D3D9Surface* D3D9Context::createSurface(unsigned int width, unsigned int height,
 	return pSurface;
 }
 
-D3D9Surface* D3D9Context::createSurfaceFromFile(LPCTSTR lpFile)
-{
+D3D9Surface* D3D9Context::createSurfaceFromFile(LPCTSTR lpFile) {
 	D3DSURFACE_DESC desc;
 	D3D9Surface* pSurface = new D3D9Surface();
 
@@ -71,8 +69,25 @@ void D3D9Context::present()
 	pD3D9Device->Present(nullptr, nullptr, nullptr, nullptr);
 }
 
-bool D3D9Context::blit(D3D9Surface* pSrc, D3D9Surface* pDest) {
-	return hrAssert(pD3D9Device->StretchRect(pSrc->pData, nullptr, pDest->pData, nullptr, D3DTEXF_LINEAR), ASSERT_WARNING, TEXT("D3D9Context::blit->StretchRect"));
+// Optionally clip the source buffer to the target aspect ratio
+bool D3D9Context::blit(D3D9Surface* pSrc, D3D9Surface* pDest, bool clip) {
+	RECT rect;
+	RECT* pRect = nullptr;
+	if (clip) {
+		LONG hOffset = 0;
+		LONG vOffset = 0;
+		float aspectRatio = ((float)pSrc->width / (float)pSrc->height) / ((float)pDest->width / (float)pDest->height);
+
+		if (aspectRatio > 1.f + FLT_EPSILON)
+			hOffset = (LONG)((((float)pSrc->width - ((float)pSrc->width / aspectRatio)) / 2.f) + 0.5f);
+		else if (aspectRatio < 1.f - FLT_EPSILON)
+			vOffset = (LONG)((((float)pSrc->height - ((float)pSrc->height * aspectRatio)) / 2.f) + 0.5f);
+
+		rect = { hOffset, vOffset, (LONG)pSrc->width - hOffset, (LONG)pSrc->height - vOffset };
+		pRect = &rect;
+	}
+
+	return hrAssert(pD3D9Device->StretchRect(pSrc->pData, pRect, pDest->pData, nullptr, D3DTEXF_LINEAR), ASSERT_WARNING, TEXT("D3D9Context::blit->StretchRect"));
 }
 
 D3D9Surface::D3D9Surface(unsigned int width, unsigned int height, PixelFmt format)
@@ -110,15 +125,13 @@ D3D9Surface::~D3D9Surface() {
 		DeleteObject(hBitmap);
 }
 
-void D3D9Surface::map()
-{
+void D3D9Surface::map() {
 	D3DLOCKED_RECT lockedRect;
 	hrAssert(pData->LockRect(&lockedRect, nullptr, D3DLOCK_DISCARD | D3DLOCK_NOSYSLOCK), ASSERT_NOTICE);
 	pBuffer = lockedRect.pBits;
 	bmpInfo.bmiHeader.biSizeImage = lockedRect.Pitch * height;
 }
 
-void D3D9Surface::unmap()
-{
+void D3D9Surface::unmap() {
 	hrAssert(pData->UnlockRect(), ASSERT_NOTICE);
 }

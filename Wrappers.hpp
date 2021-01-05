@@ -68,7 +68,7 @@ public:
 	~D3D9Context();
 	D3D9Surface* createSurface(unsigned int width, unsigned int height, PixelFmt format);
 	D3D9Surface* createSurfaceFromFile(LPCTSTR lpFile);
-	bool blit(D3D9Surface* pSrc, D3D9Surface* pDest);
+	bool blit(D3D9Surface* pSrc, D3D9Surface* pDest, bool clip = false);
 	void present();
 	HWND hWnd;
 	IDirect3D9Ex* pD3D9;
