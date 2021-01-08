@@ -106,15 +106,12 @@ VisionRGBApp::VisionRGBApp() {
     //Create the Window
     m_frame.Create();
     m_d3D9 = D3D9Context(m_frame.GetView());
-
-	// yes, it's stupid to put this code here, in the constructor, but putting it anywhere else causes a mysterious race condition.
-	// feel free to fix.
-	if (!startCapture(1920, 1080, format))
-		crash(TEXT("Could not start capturing!"));
 }
 
 BOOL VisionRGBApp::InitInstance() {
-    return TRUE;
+	if (!startCapture(1920, 1080, format))
+		return FALSE;
+    else return TRUE;
 }
 
 int VisionRGBApp::MessageLoop() {

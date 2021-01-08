@@ -91,7 +91,7 @@ bool D3D9Context::blit(D3D9Surface* pSrc, D3D9Surface* pDest, bool clip) {
 }
 
 D3D9Surface::D3D9Surface(unsigned int width, unsigned int height, PixelFmt format)
-	: width(width), height(height), pixFormat(pixFormat), pBuffer(nullptr), pParentTexture(nullptr), pData(nullptr) {
+	: width(width), height(height), pixFormat(format), pBuffer(nullptr), pParentTexture(nullptr), pData(nullptr) {
 	HDC hDC = GetDC(nullptr);
 
 	bmpInfo.bmiHeader.biWidth = width;
@@ -107,7 +107,7 @@ D3D9Surface::D3D9Surface(unsigned int width, unsigned int height, PixelFmt forma
 	bmpInfo.bmiHeader.biClrImportant = 0;
 	bmpInfo.bmiHeader.biSizeImage = width * height * pixFmtBpp[format] / 8;
 
-	memcpy(&bmpInfo.bmiColors, &pixFmtMask[pixFormat], sizeof(pixFmtMask[format]));
+	memcpy(&bmpInfo.bmiColors, &pixFmtMask[format], sizeof(pixFmtMask[format]));
 	hBitmap = CreateDIBSection(hDC, &bmpInfo, DIB_RGB_COLORS, &pBuffer, nullptr, 0);
 }
 
