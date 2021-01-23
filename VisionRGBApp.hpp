@@ -1,5 +1,5 @@
 //////////////////////////////////////////////////
-// DXApp.h
+// VisionRGBApp.h
 //  Declaration of the VisionRGBApp class
 //  Note: we intentionally don't use the "C" prefix for class names here
 //  because we're mostly outside of Win32++ code and we'd potentially
@@ -18,7 +18,7 @@
 #include <rgbapi.h>
 #include <rgberror.h>
 
-#define NUM_BUFFERS 3
+#define NUM_BUFFERS 2
 
 struct CapturedFrame
 {
@@ -55,7 +55,8 @@ public:
 	SignalState signal;
 	Mutex mutex;
 	PixelFmt format;
-	HWND hWnd;
+	unsigned long width;
+	unsigned long height;
 
 private:
     CMainFrame m_frame;

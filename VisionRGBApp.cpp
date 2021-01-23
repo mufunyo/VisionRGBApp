@@ -99,17 +99,24 @@ void VisionRGBApp::stopCapture() {
 	RGBCloseInput(ghRGB);
 }
 
-VisionRGBApp::VisionRGBApp() {
-	format = RGB32;
+VisionRGBApp::VisionRGBApp() : m_frame(this), width(640), height(640) {
 	RGBLoad(&gHRGBDLL);
+	
+	format = RGB32;
+	RGBOpenInput(0, &ghRGB);
+	RGBGetCaptureWidthDefault(ghRGB, &width);
+	RGBGetCaptureHeightDefault(ghRGB, &height);
+	RGBCloseInput(ghRGB);
 
     //Create the Window
     m_frame.Create();
+	RECT viewRect = { 0, 0, width, height };
+	m_frame.AdjustFrameRect(viewRect);
     m_d3D9 = D3D9Context(m_frame.GetView());
 }
 
 BOOL VisionRGBApp::InitInstance() {
-	if (!startCapture(1920, 1080, format))
+	if (!startCapture(width, height, format))
 		return FALSE;
     else return TRUE;
 }

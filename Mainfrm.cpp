@@ -5,11 +5,12 @@
 #include "Mainfrm.hpp"
 #include "resource.h"
 #include "Error.hpp"
+#include "VisionRGBApp.hpp"
 
 #define STATUS_ID 1211
 
 // Definitions for the CMainFrame class
-CMainFrame::CMainFrame() : m_settingsDialog(IDD_DIALOG1), m_useBigIcons(FALSE)
+CMainFrame::CMainFrame(VisionRGBApp* pApp) : m_settingsDialog(IDD_DIALOG1), m_useBigIcons(FALSE), m_pApp(pApp)
 {
     // Constructor for CMainFrame. Its called after CFrame's constructor
 
@@ -462,7 +463,9 @@ void CMainFrame::SetupStatusBar()
     sb.SetPartWidth(1, 120);
     sb.SetPartWidth(2, 50);
 
-    sb.SetPartText(1, TEXT("640 x 480 60.000Hz"));
+    CString resString;
+    resString.Format(TEXT("%i x %i 60.000Hz"), m_pApp->width, m_pApp->height);
+    sb.SetPartText(1, resString);
     sb.SetPartText(2, _T(""), SBT_OWNERDRAW);
 }
 

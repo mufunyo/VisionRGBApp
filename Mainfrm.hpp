@@ -7,12 +7,14 @@
 #include "View.hpp"
 #include "SettingsDialog.hpp"
 
+// forward declared to avoid circular dependency
+class VisionRGBApp;
 
 // Declaration of the CMainFrame class
 class CMainFrame : public CFrame
 {
 public:
-    CMainFrame();
+    CMainFrame(VisionRGBApp *pApp);
     virtual ~CMainFrame();
 
     BOOL    OnFileExit();
@@ -54,6 +56,7 @@ private:
     CToolBar m_inputBar;
     CComboBox m_inputList;
     CSettingsDialog m_settingsDialog;
+    VisionRGBApp* m_pApp;
 };
 
 HFONT GetWindowsDefaultFont();
